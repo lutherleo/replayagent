@@ -1,0 +1,1422 @@
+{
+ "events": [
+  {
+   "cmd": null,
+   "data": {
+    "code_hash": "88a9d3732c94",
+    "input": {
+     "question": "How do durable execution engines avoid duplicating side effects after a crash?"
+    },
+    "seed": 586456506733896466,
+    "type": "research"
+   },
+   "seq": 1,
+   "ts": 1767225600.0,
+   "type": "WorkflowStarted"
+  },
+  {
+   "cmd": 0,
+   "data": {
+    "input": [
+     {
+      "json_mode": true,
+      "max_tokens": null,
+      "messages": [
+       {
+        "content": "[planner] You plan research. Break the QUESTION into COUNT focused, non-overlapping sub-questions. Reply with JSON only: {\"subquestions\": [\"...\", \"...\"]}.",
+        "role": "system"
+       },
+       {
+        "content": "QUESTION: How do durable execution engines avoid duplicating side effects after a crash?\nCOUNT: 3",
+        "role": "user"
+       }
+      ],
+      "model": null,
+      "temperature": 0.0,
+      "tools": []
+     }
+    ],
+    "input_hash": "fbf62203cbddbc9e",
+    "name": "llm.chat",
+    "options": {
+     "delivery": "at_least_once",
+     "retry": {
+      "backoff_coefficient": 2.0,
+      "initial_interval": 1.0,
+      "jitter": 0.0,
+      "maximum_attempts": 4,
+      "maximum_interval": 30.0,
+      "non_retryable_error_types": [
+       "LLMRequestError"
+      ]
+     },
+     "timeout": null
+    }
+   },
+   "seq": 2,
+   "ts": 1767225600.0,
+   "type": "ActivityScheduled"
+  },
+  {
+   "cmd": 0,
+   "data": {
+    "attempt": 1
+   },
+   "seq": 3,
+   "ts": 1767225600.0,
+   "type": "ActivityStarted"
+  },
+  {
+   "cmd": 0,
+   "data": {
+    "attempt": 1,
+    "result": {
+     "finish_reason": "stop",
+     "message": {
+      "content": "{\"subquestions\": [\"How do durable execution engines avoid duplicating side effects after a crash? Focus: core mechanism (event history recorded replay).\", \"How do durable execution engines avoid duplicating side effects after a crash? Focus: failure handling (retries backoff idempotency keys).\", \"How do durable execution engines avoid duplicating side effects after a crash? Focus: practical safeguards (versioning determinism tests).\"]}",
+      "role": "assistant"
+     },
+     "model": "fake-1",
+     "usage": {
+      "completion_tokens": 109,
+      "prompt_tokens": 62
+     }
+    }
+   },
+   "seq": 4,
+   "ts": 1767225600.0,
+   "type": "ActivityCompleted"
+  },
+  {
+   "cmd": 1,
+   "data": {
+    "input": [
+     {
+      "json_mode": false,
+      "max_tokens": null,
+      "messages": [
+       {
+        "content": "[researcher] Answer the SUBQUESTION using only the document corpus. Call the search_corpus tool first. Then answer in 2-4 short bullet points; end every bullet with the id of the document it comes from in square brackets, for example [event-sourcing].",
+        "role": "system"
+       },
+       {
+        "content": "SUBQUESTION: How do durable execution engines avoid duplicating side effects after a crash? Focus: core mechanism (event history recorded replay).",
+        "role": "user"
+       }
+      ],
+      "model": null,
+      "temperature": 0.0,
+      "tools": [
+       {
+        "description": "Search the research corpus and return the best matching passages with their document ids.",
+        "name": "search_corpus",
+        "parameters": {
+         "properties": {
+          "k": {
+           "type": "integer"
+          },
+          "query": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "query"
+         ],
+         "type": "object"
+        }
+       },
+       {
+        "description": "Return the full text of one corpus document by its id.",
+        "name": "read_document",
+        "parameters": {
+         "properties": {
+          "doc_id": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "doc_id"
+         ],
+         "type": "object"
+        }
+       }
+      ]
+     }
+    ],
+    "input_hash": "92630e61380c199f",
+    "name": "llm.chat",
+    "options": {
+     "delivery": "at_least_once",
+     "retry": {
+      "backoff_coefficient": 2.0,
+      "initial_interval": 1.0,
+      "jitter": 0.0,
+      "maximum_attempts": 4,
+      "maximum_interval": 30.0,
+      "non_retryable_error_types": [
+       "LLMRequestError"
+      ]
+     },
+     "timeout": null
+    }
+   },
+   "seq": 5,
+   "ts": 1767225600.0,
+   "type": "ActivityScheduled"
+  },
+  {
+   "cmd": 2,
+   "data": {
+    "input": [
+     {
+      "json_mode": false,
+      "max_tokens": null,
+      "messages": [
+       {
+        "content": "[researcher] Answer the SUBQUESTION using only the document corpus. Call the search_corpus tool first. Then answer in 2-4 short bullet points; end every bullet with the id of the document it comes from in square brackets, for example [event-sourcing].",
+        "role": "system"
+       },
+       {
+        "content": "SUBQUESTION: How do durable execution engines avoid duplicating side effects after a crash? Focus: failure handling (retries backoff idempotency keys).",
+        "role": "user"
+       }
+      ],
+      "model": null,
+      "temperature": 0.0,
+      "tools": [
+       {
+        "description": "Search the research corpus and return the best matching passages with their document ids.",
+        "name": "search_corpus",
+        "parameters": {
+         "properties": {
+          "k": {
+           "type": "integer"
+          },
+          "query": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "query"
+         ],
+         "type": "object"
+        }
+       },
+       {
+        "description": "Return the full text of one corpus document by its id.",
+        "name": "read_document",
+        "parameters": {
+         "properties": {
+          "doc_id": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "doc_id"
+         ],
+         "type": "object"
+        }
+       }
+      ]
+     }
+    ],
+    "input_hash": "90c52c76974f3c3a",
+    "name": "llm.chat",
+    "options": {
+     "delivery": "at_least_once",
+     "retry": {
+      "backoff_coefficient": 2.0,
+      "initial_interval": 1.0,
+      "jitter": 0.0,
+      "maximum_attempts": 4,
+      "maximum_interval": 30.0,
+      "non_retryable_error_types": [
+       "LLMRequestError"
+      ]
+     },
+     "timeout": null
+    }
+   },
+   "seq": 6,
+   "ts": 1767225600.0,
+   "type": "ActivityScheduled"
+  },
+  {
+   "cmd": 3,
+   "data": {
+    "input": [
+     {
+      "json_mode": false,
+      "max_tokens": null,
+      "messages": [
+       {
+        "content": "[researcher] Answer the SUBQUESTION using only the document corpus. Call the search_corpus tool first. Then answer in 2-4 short bullet points; end every bullet with the id of the document it comes from in square brackets, for example [event-sourcing].",
+        "role": "system"
+       },
+       {
+        "content": "SUBQUESTION: How do durable execution engines avoid duplicating side effects after a crash? Focus: practical safeguards (versioning determinism tests).",
+        "role": "user"
+       }
+      ],
+      "model": null,
+      "temperature": 0.0,
+      "tools": [
+       {
+        "description": "Search the research corpus and return the best matching passages with their document ids.",
+        "name": "search_corpus",
+        "parameters": {
+         "properties": {
+          "k": {
+           "type": "integer"
+          },
+          "query": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "query"
+         ],
+         "type": "object"
+        }
+       },
+       {
+        "description": "Return the full text of one corpus document by its id.",
+        "name": "read_document",
+        "parameters": {
+         "properties": {
+          "doc_id": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "doc_id"
+         ],
+         "type": "object"
+        }
+       }
+      ]
+     }
+    ],
+    "input_hash": "dda8ed203bb85915",
+    "name": "llm.chat",
+    "options": {
+     "delivery": "at_least_once",
+     "retry": {
+      "backoff_coefficient": 2.0,
+      "initial_interval": 1.0,
+      "jitter": 0.0,
+      "maximum_attempts": 4,
+      "maximum_interval": 30.0,
+      "non_retryable_error_types": [
+       "LLMRequestError"
+      ]
+     },
+     "timeout": null
+    }
+   },
+   "seq": 7,
+   "ts": 1767225600.0,
+   "type": "ActivityScheduled"
+  },
+  {
+   "cmd": 1,
+   "data": {
+    "attempt": 1
+   },
+   "seq": 8,
+   "ts": 1767225600.0,
+   "type": "ActivityStarted"
+  },
+  {
+   "cmd": 2,
+   "data": {
+    "attempt": 1
+   },
+   "seq": 9,
+   "ts": 1767225600.0,
+   "type": "ActivityStarted"
+  },
+  {
+   "cmd": 3,
+   "data": {
+    "attempt": 1
+   },
+   "seq": 10,
+   "ts": 1767225600.0,
+   "type": "ActivityStarted"
+  },
+  {
+   "cmd": 1,
+   "data": {
+    "attempt": 1,
+    "result": {
+     "finish_reason": "stop",
+     "message": {
+      "content": "",
+      "role": "assistant",
+      "tool_calls": [
+       {
+        "arguments": {
+         "k": 3,
+         "query": "How do durable execution engines avoid duplicating side effects after a crash? Focus: core mechanism (event history recorded replay)."
+        },
+        "id": "call_0",
+        "name": "search_corpus"
+       }
+      ]
+     },
+     "model": "fake-1",
+     "usage": {
+      "completion_tokens": 1,
+      "prompt_tokens": 98
+     }
+    }
+   },
+   "seq": 11,
+   "ts": 1767225600.0,
+   "type": "ActivityCompleted"
+  },
+  {
+   "cmd": 2,
+   "data": {
+    "attempt": 1,
+    "result": {
+     "finish_reason": "stop",
+     "message": {
+      "content": "",
+      "role": "assistant",
+      "tool_calls": [
+       {
+        "arguments": {
+         "k": 3,
+         "query": "How do durable execution engines avoid duplicating side effects after a crash? Focus: failure handling (retries backoff idempotency keys)."
+        },
+        "id": "call_0",
+        "name": "search_corpus"
+       }
+      ]
+     },
+     "model": "fake-1",
+     "usage": {
+      "completion_tokens": 1,
+      "prompt_tokens": 99
+     }
+    }
+   },
+   "seq": 12,
+   "ts": 1767225600.0,
+   "type": "ActivityCompleted"
+  },
+  {
+   "cmd": 3,
+   "data": {
+    "attempt": 1,
+    "result": {
+     "finish_reason": "stop",
+     "message": {
+      "content": "",
+      "role": "assistant",
+      "tool_calls": [
+       {
+        "arguments": {
+         "k": 3,
+         "query": "How do durable execution engines avoid duplicating side effects after a crash? Focus: practical safeguards (versioning determinism tests)."
+        },
+        "id": "call_0",
+        "name": "search_corpus"
+       }
+      ]
+     },
+     "model": "fake-1",
+     "usage": {
+      "completion_tokens": 1,
+      "prompt_tokens": 99
+     }
+    }
+   },
+   "seq": 13,
+   "ts": 1767225600.0,
+   "type": "ActivityCompleted"
+  },
+  {
+   "cmd": 4,
+   "data": {
+    "input": [
+     {
+      "k": 3,
+      "query": "How do durable execution engines avoid duplicating side effects after a crash? Focus: core mechanism (event history recorded replay)."
+     }
+    ],
+    "input_hash": "1a86436b973bb6f8",
+    "name": "tool.search_corpus",
+    "options": {
+     "delivery": "at_least_once",
+     "retry": {
+      "backoff_coefficient": 2.0,
+      "initial_interval": 0.2,
+      "jitter": 0.0,
+      "maximum_attempts": 3,
+      "maximum_interval": 60.0,
+      "non_retryable_error_types": []
+     },
+     "timeout": null
+    }
+   },
+   "seq": 14,
+   "ts": 1767225600.0,
+   "type": "ActivityScheduled"
+  },
+  {
+   "cmd": 5,
+   "data": {
+    "input": [
+     {
+      "k": 3,
+      "query": "How do durable execution engines avoid duplicating side effects after a crash? Focus: failure handling (retries backoff idempotency keys)."
+     }
+    ],
+    "input_hash": "2317cfe8f21ed983",
+    "name": "tool.search_corpus",
+    "options": {
+     "delivery": "at_least_once",
+     "retry": {
+      "backoff_coefficient": 2.0,
+      "initial_interval": 0.2,
+      "jitter": 0.0,
+      "maximum_attempts": 3,
+      "maximum_interval": 60.0,
+      "non_retryable_error_types": []
+     },
+     "timeout": null
+    }
+   },
+   "seq": 15,
+   "ts": 1767225600.0,
+   "type": "ActivityScheduled"
+  },
+  {
+   "cmd": 6,
+   "data": {
+    "input": [
+     {
+      "k": 3,
+      "query": "How do durable execution engines avoid duplicating side effects after a crash? Focus: practical safeguards (versioning determinism tests)."
+     }
+    ],
+    "input_hash": "fee932dbb08e39fa",
+    "name": "tool.search_corpus",
+    "options": {
+     "delivery": "at_least_once",
+     "retry": {
+      "backoff_coefficient": 2.0,
+      "initial_interval": 0.2,
+      "jitter": 0.0,
+      "maximum_attempts": 3,
+      "maximum_interval": 60.0,
+      "non_retryable_error_types": []
+     },
+     "timeout": null
+    }
+   },
+   "seq": 16,
+   "ts": 1767225600.0,
+   "type": "ActivityScheduled"
+  },
+  {
+   "cmd": 4,
+   "data": {
+    "attempt": 1
+   },
+   "seq": 17,
+   "ts": 1767225600.0,
+   "type": "ActivityStarted"
+  },
+  {
+   "cmd": 5,
+   "data": {
+    "attempt": 1
+   },
+   "seq": 18,
+   "ts": 1767225600.0,
+   "type": "ActivityStarted"
+  },
+  {
+   "cmd": 6,
+   "data": {
+    "attempt": 1
+   },
+   "seq": 19,
+   "ts": 1767225600.0,
+   "type": "ActivityStarted"
+  },
+  {
+   "cmd": 5,
+   "data": {
+    "attempt": 1,
+    "result": [
+     {
+      "doc_id": "idempotency-keys",
+      "score": 17.2968,
+      "snippet": "To avoid duplicate side effects, a step passes an idempotency key to the system it changes.",
+      "title": "Idempotency keys and duplicate side effects"
+     },
+     {
+      "doc_id": "retries-and-backoff",
+      "score": 6.0097,
+      "snippet": "Exponential backoff multiplies the wait after each failure, for example one second, then two, then four, up to a maximum interval.",
+      "title": "Retries with exponential backoff"
+     },
+     {
+      "doc_id": "sqlite-durability",
+      "score": 5.304,
+      "snippet": "SQLite is a good fit for a single-node durable execution engine because a transaction can append events, update an index of timers and change a status row atomically.",
+      "title": "SQLite durability for single-node engines"
+     }
+    ]
+   },
+   "seq": 20,
+   "ts": 1767225600.0,
+   "type": "ActivityCompleted"
+  },
+  {
+   "cmd": 4,
+   "data": {
+    "attempt": 1,
+    "result": [
+     {
+      "doc_id": "idempotency-keys",
+      "score": 12.1319,
+      "snippet": "A crash can happen after a side effect took place but before its result was recorded.",
+      "title": "Idempotency keys and duplicate side effects"
+     },
+     {
+      "doc_id": "event-sourcing",
+      "score": 5.135,
+      "snippet": "For workflow engines the log is the workflow history: each scheduled step, each result and each timer is an event.",
+      "title": "Event sourcing for workflow state"
+     },
+     {
+      "doc_id": "durable-timers",
+      "score": 4.5458,
+      "snippet": "A durable timer is a sleep that survives restarts.",
+      "title": "Durable timers"
+     }
+    ]
+   },
+   "seq": 21,
+   "ts": 1767225600.0,
+   "type": "ActivityCompleted"
+  },
+  {
+   "cmd": 6,
+   "data": {
+    "attempt": 1,
+    "result": [
+     {
+      "doc_id": "idempotency-keys",
+      "score": 11.27,
+      "snippet": "A crash can happen after a side effect took place but before its result was recorded.",
+      "title": "Idempotency keys and duplicate side effects"
+     },
+     {
+      "doc_id": "sqlite-durability",
+      "score": 3.8549,
+      "snippet": "SQLite is a good fit for a single-node durable execution engine because a transaction can append events, update an index of timers and change a status row atomically.",
+      "title": "SQLite durability for single-node engines"
+     },
+     {
+      "doc_id": "sagas-and-compensation",
+      "score": 3.0773,
+      "snippet": "Durable execution makes sagas easier to write because the list of completed steps is part of the history, so the compensation logic is an ordinary try and except block in workflow code.",
+      "title": "Sagas and compensation"
+     }
+    ]
+   },
+   "seq": 22,
+   "ts": 1767225600.0,
+   "type": "ActivityCompleted"
+  },
+  {
+   "cmd": 7,
+   "data": {
+    "input": [
+     {
+      "json_mode": false,
+      "max_tokens": null,
+      "messages": [
+       {
+        "content": "[researcher] Answer the SUBQUESTION using only the document corpus. Call the search_corpus tool first. Then answer in 2-4 short bullet points; end every bullet with the id of the document it comes from in square brackets, for example [event-sourcing].",
+        "role": "system"
+       },
+       {
+        "content": "SUBQUESTION: How do durable execution engines avoid duplicating side effects after a crash? Focus: core mechanism (event history recorded replay).",
+        "role": "user"
+       },
+       {
+        "content": "",
+        "role": "assistant",
+        "tool_calls": [
+         {
+          "arguments": {
+           "k": 3,
+           "query": "How do durable execution engines avoid duplicating side effects after a crash? Focus: core mechanism (event history recorded replay)."
+          },
+          "id": "call_0",
+          "name": "search_corpus"
+         }
+        ]
+       },
+       {
+        "content": "[{\"doc_id\":\"idempotency-keys\",\"score\":12.1319,\"snippet\":\"A crash can happen after a side effect took place but before its result was recorded.\",\"title\":\"Idempotency keys and duplicate side effects\"},{\"doc_id\":\"event-sourcing\",\"score\":5.135,\"snippet\":\"For workflow engines the log is the workflow history: each scheduled step, each result and each timer is an event.\",\"title\":\"Event sourcing for workflow state\"},{\"doc_id\":\"durable-timers\",\"score\":4.5458,\"snippet\":\"A durable timer is a sleep that survives restarts.\",\"title\":\"Durable timers\"}]",
+        "name": "search_corpus",
+        "role": "tool",
+        "tool_call_id": "call_0"
+       }
+      ],
+      "model": null,
+      "temperature": 0.0,
+      "tools": [
+       {
+        "description": "Search the research corpus and return the best matching passages with their document ids.",
+        "name": "search_corpus",
+        "parameters": {
+         "properties": {
+          "k": {
+           "type": "integer"
+          },
+          "query": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "query"
+         ],
+         "type": "object"
+        }
+       },
+       {
+        "description": "Return the full text of one corpus document by its id.",
+        "name": "read_document",
+        "parameters": {
+         "properties": {
+          "doc_id": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "doc_id"
+         ],
+         "type": "object"
+        }
+       }
+      ]
+     }
+    ],
+    "input_hash": "967bf54a7f19d5a0",
+    "name": "llm.chat",
+    "options": {
+     "delivery": "at_least_once",
+     "retry": {
+      "backoff_coefficient": 2.0,
+      "initial_interval": 1.0,
+      "jitter": 0.0,
+      "maximum_attempts": 4,
+      "maximum_interval": 30.0,
+      "non_retryable_error_types": [
+       "LLMRequestError"
+      ]
+     },
+     "timeout": null
+    }
+   },
+   "seq": 23,
+   "ts": 1767225600.0,
+   "type": "ActivityScheduled"
+  },
+  {
+   "cmd": 8,
+   "data": {
+    "input": [
+     {
+      "json_mode": false,
+      "max_tokens": null,
+      "messages": [
+       {
+        "content": "[researcher] Answer the SUBQUESTION using only the document corpus. Call the search_corpus tool first. Then answer in 2-4 short bullet points; end every bullet with the id of the document it comes from in square brackets, for example [event-sourcing].",
+        "role": "system"
+       },
+       {
+        "content": "SUBQUESTION: How do durable execution engines avoid duplicating side effects after a crash? Focus: failure handling (retries backoff idempotency keys).",
+        "role": "user"
+       },
+       {
+        "content": "",
+        "role": "assistant",
+        "tool_calls": [
+         {
+          "arguments": {
+           "k": 3,
+           "query": "How do durable execution engines avoid duplicating side effects after a crash? Focus: failure handling (retries backoff idempotency keys)."
+          },
+          "id": "call_0",
+          "name": "search_corpus"
+         }
+        ]
+       },
+       {
+        "content": "[{\"doc_id\":\"idempotency-keys\",\"score\":17.2968,\"snippet\":\"To avoid duplicate side effects, a step passes an idempotency key to the system it changes.\",\"title\":\"Idempotency keys and duplicate side effects\"},{\"doc_id\":\"retries-and-backoff\",\"score\":6.0097,\"snippet\":\"Exponential backoff multiplies the wait after each failure, for example one second, then two, then four, up to a maximum interval.\",\"title\":\"Retries with exponential backoff\"},{\"doc_id\":\"sqlite-durability\",\"score\":5.304,\"snippet\":\"SQLite is a good fit for a single-node durable execution engine because a transaction can append events, update an index of timers and change a status row atomically.\",\"title\":\"SQLite durability for single-node engines\"}]",
+        "name": "search_corpus",
+        "role": "tool",
+        "tool_call_id": "call_0"
+       }
+      ],
+      "model": null,
+      "temperature": 0.0,
+      "tools": [
+       {
+        "description": "Search the research corpus and return the best matching passages with their document ids.",
+        "name": "search_corpus",
+        "parameters": {
+         "properties": {
+          "k": {
+           "type": "integer"
+          },
+          "query": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "query"
+         ],
+         "type": "object"
+        }
+       },
+       {
+        "description": "Return the full text of one corpus document by its id.",
+        "name": "read_document",
+        "parameters": {
+         "properties": {
+          "doc_id": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "doc_id"
+         ],
+         "type": "object"
+        }
+       }
+      ]
+     }
+    ],
+    "input_hash": "706700e8f97d5813",
+    "name": "llm.chat",
+    "options": {
+     "delivery": "at_least_once",
+     "retry": {
+      "backoff_coefficient": 2.0,
+      "initial_interval": 1.0,
+      "jitter": 0.0,
+      "maximum_attempts": 4,
+      "maximum_interval": 30.0,
+      "non_retryable_error_types": [
+       "LLMRequestError"
+      ]
+     },
+     "timeout": null
+    }
+   },
+   "seq": 24,
+   "ts": 1767225600.0,
+   "type": "ActivityScheduled"
+  },
+  {
+   "cmd": 9,
+   "data": {
+    "input": [
+     {
+      "json_mode": false,
+      "max_tokens": null,
+      "messages": [
+       {
+        "content": "[researcher] Answer the SUBQUESTION using only the document corpus. Call the search_corpus tool first. Then answer in 2-4 short bullet points; end every bullet with the id of the document it comes from in square brackets, for example [event-sourcing].",
+        "role": "system"
+       },
+       {
+        "content": "SUBQUESTION: How do durable execution engines avoid duplicating side effects after a crash? Focus: practical safeguards (versioning determinism tests).",
+        "role": "user"
+       },
+       {
+        "content": "",
+        "role": "assistant",
+        "tool_calls": [
+         {
+          "arguments": {
+           "k": 3,
+           "query": "How do durable execution engines avoid duplicating side effects after a crash? Focus: practical safeguards (versioning determinism tests)."
+          },
+          "id": "call_0",
+          "name": "search_corpus"
+         }
+        ]
+       },
+       {
+        "content": "[{\"doc_id\":\"idempotency-keys\",\"score\":11.27,\"snippet\":\"A crash can happen after a side effect took place but before its result was recorded.\",\"title\":\"Idempotency keys and duplicate side effects\"},{\"doc_id\":\"sqlite-durability\",\"score\":3.8549,\"snippet\":\"SQLite is a good fit for a single-node durable execution engine because a transaction can append events, update an index of timers and change a status row atomically.\",\"title\":\"SQLite durability for single-node engines\"},{\"doc_id\":\"sagas-and-compensation\",\"score\":3.0773,\"snippet\":\"Durable execution makes sagas easier to write because the list of completed steps is part of the history, so the compensation logic is an ordinary try and except block in workflow code.\",\"title\":\"Sagas and compensation\"}]",
+        "name": "search_corpus",
+        "role": "tool",
+        "tool_call_id": "call_0"
+       }
+      ],
+      "model": null,
+      "temperature": 0.0,
+      "tools": [
+       {
+        "description": "Search the research corpus and return the best matching passages with their document ids.",
+        "name": "search_corpus",
+        "parameters": {
+         "properties": {
+          "k": {
+           "type": "integer"
+          },
+          "query": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "query"
+         ],
+         "type": "object"
+        }
+       },
+       {
+        "description": "Return the full text of one corpus document by its id.",
+        "name": "read_document",
+        "parameters": {
+         "properties": {
+          "doc_id": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "doc_id"
+         ],
+         "type": "object"
+        }
+       }
+      ]
+     }
+    ],
+    "input_hash": "dcc6db074047016e",
+    "name": "llm.chat",
+    "options": {
+     "delivery": "at_least_once",
+     "retry": {
+      "backoff_coefficient": 2.0,
+      "initial_interval": 1.0,
+      "jitter": 0.0,
+      "maximum_attempts": 4,
+      "maximum_interval": 30.0,
+      "non_retryable_error_types": [
+       "LLMRequestError"
+      ]
+     },
+     "timeout": null
+    }
+   },
+   "seq": 25,
+   "ts": 1767225600.0,
+   "type": "ActivityScheduled"
+  },
+  {
+   "cmd": 7,
+   "data": {
+    "attempt": 1
+   },
+   "seq": 26,
+   "ts": 1767225600.0,
+   "type": "ActivityStarted"
+  },
+  {
+   "cmd": 8,
+   "data": {
+    "attempt": 1
+   },
+   "seq": 27,
+   "ts": 1767225600.0,
+   "type": "ActivityStarted"
+  },
+  {
+   "cmd": 9,
+   "data": {
+    "attempt": 1
+   },
+   "seq": 28,
+   "ts": 1767225600.0,
+   "type": "ActivityStarted"
+  },
+  {
+   "cmd": 7,
+   "data": {
+    "attempt": 1,
+    "result": {
+     "finish_reason": "stop",
+     "message": {
+      "content": "- A crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n- For workflow engines the log is the workflow history: each scheduled step, each result and each timer is an event. [event-sourcing]",
+      "role": "assistant"
+     },
+     "model": "fake-1",
+     "usage": {
+      "completion_tokens": 60,
+      "prompt_tokens": 234
+     }
+    }
+   },
+   "seq": 29,
+   "ts": 1767225600.0,
+   "type": "ActivityCompleted"
+  },
+  {
+   "cmd": 8,
+   "data": {
+    "attempt": 1,
+    "result": {
+     "finish_reason": "stop",
+     "message": {
+      "content": "- To avoid duplicate side effects, a step passes an idempotency key to the system it changes. [idempotency-keys]\n- Exponential backoff multiplies the wait after each failure, for example one second, then two, then four, up to a maximum interval. [retries-and-backoff]",
+      "role": "assistant"
+     },
+     "model": "fake-1",
+     "usage": {
+      "completion_tokens": 66,
+      "prompt_tokens": 278
+     }
+    }
+   },
+   "seq": 30,
+   "ts": 1767225600.0,
+   "type": "ActivityCompleted"
+  },
+  {
+   "cmd": 9,
+   "data": {
+    "attempt": 1,
+    "result": {
+     "finish_reason": "stop",
+     "message": {
+      "content": "- A crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n- SQLite is a good fit for a single-node durable execution engine because a transaction can append events, update an index of timers and change a status row atomically. [sqlite-durability]",
+      "role": "assistant"
+     },
+     "model": "fake-1",
+     "usage": {
+      "completion_tokens": 73,
+      "prompt_tokens": 289
+     }
+    }
+   },
+   "seq": 31,
+   "ts": 1767225600.0,
+   "type": "ActivityCompleted"
+  },
+  {
+   "cmd": 10,
+   "data": {
+    "input": [
+     {
+      "json_mode": false,
+      "max_tokens": null,
+      "messages": [
+       {
+        "content": "[writer] Write a concise markdown report that answers the QUESTION using only the NOTES. Use the sections '## Summary', '## Findings' and '## Sources'. Keep the [doc-id] citations from the notes.",
+        "role": "system"
+       },
+       {
+        "content": "QUESTION: How do durable execution engines avoid duplicating side effects after a crash?\n\nNOTES:\n### How do durable execution engines avoid duplicating side effects after a crash? Focus: core mechanism (event history recorded replay).\n- A crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n- For workflow engines the log is the workflow history: each scheduled step, each result and each timer is an event. [event-sourcing]\n\n### How do durable execution engines avoid duplicating side effects after a crash? Focus: failure handling (retries backoff idempotency keys).\n- To avoid duplicate side effects, a step passes an idempotency key to the system it changes. [idempotency-keys]\n- Exponential backoff multiplies the wait after each failure, for example one second, then two, then four, up to a maximum interval. [retries-and-backoff]\n\n### How do durable execution engines avoid duplicating side effects after a crash? Focus: practical safeguards (versioning determinism tests).\n- A crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n- SQLite is a good fit for a single-node durable execution engine because a transaction can append events, update an index of timers and change a status row atomically. [sqlite-durability]",
+        "role": "user"
+       }
+      ],
+      "model": null,
+      "temperature": 0.0,
+      "tools": []
+     }
+    ],
+    "input_hash": "262cf36abf38ce48",
+    "name": "llm.chat",
+    "options": {
+     "delivery": "at_least_once",
+     "retry": {
+      "backoff_coefficient": 2.0,
+      "initial_interval": 1.0,
+      "jitter": 0.0,
+      "maximum_attempts": 4,
+      "maximum_interval": 30.0,
+      "non_retryable_error_types": [
+       "LLMRequestError"
+      ]
+     },
+     "timeout": null
+    }
+   },
+   "seq": 32,
+   "ts": 1767225600.0,
+   "type": "ActivityScheduled"
+  },
+  {
+   "cmd": 10,
+   "data": {
+    "attempt": 1
+   },
+   "seq": 33,
+   "ts": 1767225600.0,
+   "type": "ActivityStarted"
+  },
+  {
+   "cmd": 10,
+   "data": {
+    "attempt": 1,
+    "result": {
+     "finish_reason": "stop",
+     "message": {
+      "content": "# How do durable execution engines avoid duplicating side effects after a crash?\n\n## Summary\nA crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n\n## Findings\n### How do durable execution engines avoid duplicating side effects after a crash? Focus: core mechanism (event history recorded replay).\n- A crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n- For workflow engines the log is the workflow history: each scheduled step, each result and each timer is an event. [event-sourcing]\n\n### How do durable execution engines avoid duplicating side effects after a crash? Focus: failure handling (retries backoff idempotency keys).\n- To avoid duplicate side effects, a step passes an idempotency key to the system it changes. [idempotency-keys]\n- Exponential backoff multiplies the wait after each failure, for example one second, then two, then four, up to a maximum interval. [retries-and-backoff]\n\n### How do durable execution engines avoid duplicating side effects after a crash? Focus: practical safeguards (versioning determinism tests).\n- A crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n- SQLite is a good fit for a single-node durable execution engine because a transaction can append events, update an index of timers and change a status row atomically. [sqlite-durability]\n\n## Sources\n- [event-sourcing]\n- [idempotency-keys]\n- [retries-and-backoff]\n- [sqlite-durability]",
+      "role": "assistant"
+     },
+     "model": "fake-1",
+     "usage": {
+      "completion_tokens": 384,
+      "prompt_tokens": 379
+     }
+    }
+   },
+   "seq": 34,
+   "ts": 1767225600.0,
+   "type": "ActivityCompleted"
+  },
+  {
+   "cmd": 11,
+   "data": {
+    "change_id": "citation-check",
+    "version": 1
+   },
+   "seq": 35,
+   "ts": 1767225600.0,
+   "type": "VersionMarker"
+  },
+  {
+   "cmd": 12,
+   "data": {
+    "input": [
+     "# How do durable execution engines avoid duplicating side effects after a crash?\n\n## Summary\nA crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n\n## Findings\n### How do durable execution engines avoid duplicating side effects after a crash? Focus: core mechanism (event history recorded replay).\n- A crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n- For workflow engines the log is the workflow history: each scheduled step, each result and each timer is an event. [event-sourcing]\n\n### How do durable execution engines avoid duplicating side effects after a crash? Focus: failure handling (retries backoff idempotency keys).\n- To avoid duplicate side effects, a step passes an idempotency key to the system it changes. [idempotency-keys]\n- Exponential backoff multiplies the wait after each failure, for example one second, then two, then four, up to a maximum interval. [retries-and-backoff]\n\n### How do durable execution engines avoid duplicating side effects after a crash? Focus: practical safeguards (versioning determinism tests).\n- A crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n- SQLite is a good fit for a single-node durable execution engine because a transaction can append events, update an index of timers and change a status row atomically. [sqlite-durability]\n\n## Sources\n- [event-sourcing]\n- [idempotency-keys]\n- [retries-and-backoff]\n- [sqlite-durability]"
+    ],
+    "input_hash": "7f0984b624f9d96d",
+    "name": "research.check_citations",
+    "options": {
+     "delivery": "at_least_once",
+     "retry": {
+      "backoff_coefficient": 2.0,
+      "initial_interval": 1.0,
+      "jitter": 0.0,
+      "maximum_attempts": 3,
+      "maximum_interval": 60.0,
+      "non_retryable_error_types": []
+     },
+     "timeout": null
+    }
+   },
+   "seq": 36,
+   "ts": 1767225600.0,
+   "type": "ActivityScheduled"
+  },
+  {
+   "cmd": 12,
+   "data": {
+    "attempt": 1
+   },
+   "seq": 37,
+   "ts": 1767225600.0,
+   "type": "ActivityStarted"
+  },
+  {
+   "cmd": 12,
+   "data": {
+    "attempt": 1,
+    "result": {
+     "cited": [
+      "idempotency-keys",
+      "event-sourcing",
+      "retries-and-backoff",
+      "sqlite-durability"
+     ],
+     "unknown": []
+    }
+   },
+   "seq": 38,
+   "ts": 1767225600.0,
+   "type": "ActivityCompleted"
+  },
+  {
+   "cmd": 13,
+   "data": {
+    "deadline": 1767312000.0,
+    "name": "review",
+    "timeout": 86400.0
+   },
+   "seq": 39,
+   "ts": 1767225600.0,
+   "type": "SignalWaitStarted"
+  },
+  {
+   "cmd": null,
+   "data": {
+    "name": "review",
+    "payload": {
+     "approve": false,
+     "feedback": "Add a one-line summary."
+    }
+   },
+   "seq": 40,
+   "ts": 1767225600.0,
+   "type": "SignalReceived"
+  },
+  {
+   "cmd": 13,
+   "data": {
+    "name": "review",
+    "payload": {
+     "approve": false,
+     "feedback": "Add a one-line summary."
+    },
+    "signal_seq": 40
+   },
+   "seq": 41,
+   "ts": 1767225600.0,
+   "type": "SignalConsumed"
+  },
+  {
+   "cmd": 14,
+   "data": {
+    "input": [
+     {
+      "json_mode": false,
+      "max_tokens": null,
+      "messages": [
+       {
+        "content": "[reviser] Revise the DRAFT report to address the reviewer FEEDBACK. Keep the structure and the [doc-id] citations. Return the complete revised report in markdown.",
+        "role": "system"
+       },
+       {
+        "content": "DRAFT:\n# How do durable execution engines avoid duplicating side effects after a crash?\n\n## Summary\nA crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n\n## Findings\n### How do durable execution engines avoid duplicating side effects after a crash? Focus: core mechanism (event history recorded replay).\n- A crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n- For workflow engines the log is the workflow history: each scheduled step, each result and each timer is an event. [event-sourcing]\n\n### How do durable execution engines avoid duplicating side effects after a crash? Focus: failure handling (retries backoff idempotency keys).\n- To avoid duplicate side effects, a step passes an idempotency key to the system it changes. [idempotency-keys]\n- Exponential backoff multiplies the wait after each failure, for example one second, then two, then four, up to a maximum interval. [retries-and-backoff]\n\n### How do durable execution engines avoid duplicating side effects after a crash? Focus: practical safeguards (versioning determinism tests).\n- A crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n- SQLite is a good fit for a single-node durable execution engine because a transaction can append events, update an index of timers and change a status row atomically. [sqlite-durability]\n\n## Sources\n- [event-sourcing]\n- [idempotency-keys]\n- [retries-and-backoff]\n- [sqlite-durability]\n\nFEEDBACK:\nAdd a one-line summary.",
+        "role": "user"
+       }
+      ],
+      "model": null,
+      "temperature": 0.0,
+      "tools": []
+     }
+    ],
+    "input_hash": "478472ab6baaa357",
+    "name": "llm.chat",
+    "options": {
+     "delivery": "at_least_once",
+     "retry": {
+      "backoff_coefficient": 2.0,
+      "initial_interval": 1.0,
+      "jitter": 0.0,
+      "maximum_attempts": 4,
+      "maximum_interval": 30.0,
+      "non_retryable_error_types": [
+       "LLMRequestError"
+      ]
+     },
+     "timeout": null
+    }
+   },
+   "seq": 42,
+   "ts": 1767225600.0,
+   "type": "ActivityScheduled"
+  },
+  {
+   "cmd": 14,
+   "data": {
+    "attempt": 1
+   },
+   "seq": 43,
+   "ts": 1767225600.0,
+   "type": "ActivityStarted"
+  },
+  {
+   "cmd": 14,
+   "data": {
+    "attempt": 1,
+    "result": {
+     "finish_reason": "stop",
+     "message": {
+      "content": "# How do durable execution engines avoid duplicating side effects after a crash?\n\n## Summary\nA crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n\n## Findings\n### How do durable execution engines avoid duplicating side effects after a crash? Focus: core mechanism (event history recorded replay).\n- A crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n- For workflow engines the log is the workflow history: each scheduled step, each result and each timer is an event. [event-sourcing]\n\n### How do durable execution engines avoid duplicating side effects after a crash? Focus: failure handling (retries backoff idempotency keys).\n- To avoid duplicate side effects, a step passes an idempotency key to the system it changes. [idempotency-keys]\n- Exponential backoff multiplies the wait after each failure, for example one second, then two, then four, up to a maximum interval. [retries-and-backoff]\n\n### How do durable execution engines avoid duplicating side effects after a crash? Focus: practical safeguards (versioning determinism tests).\n- A crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n- SQLite is a good fit for a single-node durable execution engine because a transaction can append events, update an index of timers and change a status row atomically. [sqlite-durability]\n\n## Sources\n- [event-sourcing]\n- [idempotency-keys]\n- [retries-and-backoff]\n- [sqlite-durability]\n\n## Reviewer feedback addressed\n- Add a one-line summary.",
+      "role": "assistant"
+     },
+     "model": "fake-1",
+     "usage": {
+      "completion_tokens": 399,
+      "prompt_tokens": 435
+     }
+    }
+   },
+   "seq": 44,
+   "ts": 1767225600.0,
+   "type": "ActivityCompleted"
+  },
+  {
+   "cmd": 15,
+   "data": {
+    "deadline": 1767312000.0,
+    "name": "review",
+    "timeout": 86400.0
+   },
+   "seq": 45,
+   "ts": 1767225600.0,
+   "type": "SignalWaitStarted"
+  },
+  {
+   "cmd": null,
+   "data": {
+    "name": "review",
+    "payload": {
+     "approve": true
+    }
+   },
+   "seq": 46,
+   "ts": 1767225600.0,
+   "type": "SignalReceived"
+  },
+  {
+   "cmd": 15,
+   "data": {
+    "name": "review",
+    "payload": {
+     "approve": true
+    },
+    "signal_seq": 46
+   },
+   "seq": 47,
+   "ts": 1767225600.0,
+   "type": "SignalConsumed"
+  },
+  {
+   "cmd": 16,
+   "data": {
+    "input": [
+     {
+      "question": "How do durable execution engines avoid duplicating side effects after a crash?",
+      "report": "# How do durable execution engines avoid duplicating side effects after a crash?\n\n## Summary\nA crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n\n## Findings\n### How do durable execution engines avoid duplicating side effects after a crash? Focus: core mechanism (event history recorded replay).\n- A crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n- For workflow engines the log is the workflow history: each scheduled step, each result and each timer is an event. [event-sourcing]\n\n### How do durable execution engines avoid duplicating side effects after a crash? Focus: failure handling (retries backoff idempotency keys).\n- To avoid duplicate side effects, a step passes an idempotency key to the system it changes. [idempotency-keys]\n- Exponential backoff multiplies the wait after each failure, for example one second, then two, then four, up to a maximum interval. [retries-and-backoff]\n\n### How do durable execution engines avoid duplicating side effects after a crash? Focus: practical safeguards (versioning determinism tests).\n- A crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n- SQLite is a good fit for a single-node durable execution engine because a transaction can append events, update an index of timers and change a status row atomically. [sqlite-durability]\n\n## Sources\n- [event-sourcing]\n- [idempotency-keys]\n- [retries-and-backoff]\n- [sqlite-durability]\n\n## Reviewer feedback addressed\n- Add a one-line summary."
+     }
+    ],
+    "input_hash": "eb1aefb1e5bda1b5",
+    "name": "research.publish",
+    "options": {
+     "delivery": "at_least_once",
+     "retry": {
+      "backoff_coefficient": 2.0,
+      "initial_interval": 0.5,
+      "jitter": 0.0,
+      "maximum_attempts": 5,
+      "maximum_interval": 60.0,
+      "non_retryable_error_types": []
+     },
+     "timeout": null
+    }
+   },
+   "seq": 48,
+   "ts": 1767225600.0,
+   "type": "ActivityScheduled"
+  },
+  {
+   "cmd": 16,
+   "data": {
+    "attempt": 1
+   },
+   "seq": 49,
+   "ts": 1767225600.0,
+   "type": "ActivityStarted"
+  },
+  {
+   "cmd": 16,
+   "data": {
+    "attempt": 1,
+    "result": {
+     "chars": 1597,
+     "path": "golden-research_v1.md"
+    }
+   },
+   "seq": 50,
+   "ts": 1767225600.0,
+   "type": "ActivityCompleted"
+  },
+  {
+   "cmd": null,
+   "data": {
+    "result": {
+     "citation_check": {
+      "cited": [
+       "idempotency-keys",
+       "event-sourcing",
+       "retries-and-backoff",
+       "sqlite-durability"
+      ],
+      "unknown": []
+     },
+     "citations": [
+      "idempotency-keys",
+      "event-sourcing",
+      "retries-and-backoff",
+      "sqlite-durability"
+     ],
+     "notes": [
+      {
+       "notes": "- A crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n- For workflow engines the log is the workflow history: each scheduled step, each result and each timer is an event. [event-sourcing]",
+       "subquestion": "How do durable execution engines avoid duplicating side effects after a crash? Focus: core mechanism (event history recorded replay).",
+       "tool_calls": 1
+      },
+      {
+       "notes": "- To avoid duplicate side effects, a step passes an idempotency key to the system it changes. [idempotency-keys]\n- Exponential backoff multiplies the wait after each failure, for example one second, then two, then four, up to a maximum interval. [retries-and-backoff]",
+       "subquestion": "How do durable execution engines avoid duplicating side effects after a crash? Focus: failure handling (retries backoff idempotency keys).",
+       "tool_calls": 1
+      },
+      {
+       "notes": "- A crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n- SQLite is a good fit for a single-node durable execution engine because a transaction can append events, update an index of timers and change a status row atomically. [sqlite-durability]",
+       "subquestion": "How do durable execution engines avoid duplicating side effects after a crash? Focus: practical safeguards (versioning determinism tests).",
+       "tool_calls": 1
+      }
+     ],
+     "published": {
+      "chars": 1597,
+      "path": "golden-research_v1.md"
+     },
+     "question": "How do durable execution engines avoid duplicating side effects after a crash?",
+     "report": "# How do durable execution engines avoid duplicating side effects after a crash?\n\n## Summary\nA crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n\n## Findings\n### How do durable execution engines avoid duplicating side effects after a crash? Focus: core mechanism (event history recorded replay).\n- A crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n- For workflow engines the log is the workflow history: each scheduled step, each result and each timer is an event. [event-sourcing]\n\n### How do durable execution engines avoid duplicating side effects after a crash? Focus: failure handling (retries backoff idempotency keys).\n- To avoid duplicate side effects, a step passes an idempotency key to the system it changes. [idempotency-keys]\n- Exponential backoff multiplies the wait after each failure, for example one second, then two, then four, up to a maximum interval. [retries-and-backoff]\n\n### How do durable execution engines avoid duplicating side effects after a crash? Focus: practical safeguards (versioning determinism tests).\n- A crash can happen after a side effect took place but before its result was recorded. [idempotency-keys]\n- SQLite is a good fit for a single-node durable execution engine because a transaction can append events, update an index of timers and change a status row atomically. [sqlite-durability]\n\n## Sources\n- [event-sourcing]\n- [idempotency-keys]\n- [retries-and-backoff]\n- [sqlite-durability]\n\n## Reviewer feedback addressed\n- Add a one-line summary.",
+     "reviews": [
+      {
+       "approve": false,
+       "feedback": "Add a one-line summary."
+      },
+      {
+       "approve": true
+      }
+     ],
+     "status": "published",
+     "subquestions": [
+      "How do durable execution engines avoid duplicating side effects after a crash? Focus: core mechanism (event history recorded replay).",
+      "How do durable execution engines avoid duplicating side effects after a crash? Focus: failure handling (retries backoff idempotency keys).",
+      "How do durable execution engines avoid duplicating side effects after a crash? Focus: practical safeguards (versioning determinism tests)."
+     ]
+    }
+   },
+   "seq": 51,
+   "ts": 1767225600.0,
+   "type": "WorkflowCompleted"
+  }
+ ],
+ "format": "replayagent-history/1",
+ "workflow": {
+  "id": "golden-research_v1",
+  "status": "completed",
+  "type": "research"
+ }
+}
